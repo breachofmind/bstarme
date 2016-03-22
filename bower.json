@@ -1,0 +1,17 @@
+{
+  "name": "express-mean",
+  "description": "MEAN Express Boilerplate",
+  "main": "index.js",
+  "authors": [
+    "Mike Adamczyk <mike@bom.us>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "http://bom.us",
+  "private": true,
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "angular": "^1.5.0",
+    "foundation": "^5.5.3"
+  }
+}

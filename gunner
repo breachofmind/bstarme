@@ -1,0 +1,39 @@
+#!/usr/local/bin/node
+var program = require('commander'),
+    cp = require('child_process');
+
+var actions = {
+    serve: function()
+    {
+        require('./index');
+    },
+    mongo: function()
+    {
+        console.log('Starting MongoDB server...');
+        var process = cp.spawn("mongod",['--dbpath','./db/srv']);
+        process.stdout.on('data',(data)=>{
+            console.log(data.toString());
+        });
+    },
+    seed: function()
+    {
+        var app = require('./app/app');
+        app.bootstrap();
+        require('./db/seeder');
+    },
+    test: function()
+    {
+        var process = cp.spawn("mocha",['test']);
+        process.stdout.on('data',(data)=>{
+            console.log(data.toString());
+        });
+    }
+};
+
+program.version('1.0.0');
+program.command('seed').action(actions.seed);
+program.command('serve').action(actions.serve);
+program.command('mongo').action(actions.mongo);
+program.command('test').action(actions.test);
+
+program.parse(process.argv);

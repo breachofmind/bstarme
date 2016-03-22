@@ -1,0 +1,6 @@
+node_modules
+.sass-cache
+db/srv
+.idea
+*.DS_Store
+mean.iml
