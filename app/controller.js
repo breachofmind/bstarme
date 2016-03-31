@@ -17,6 +17,7 @@ class ControllerFactory
     {
         this.methods = methods||{};
         this._bindings = {};
+        this._middlewares = [];
 
         if (methods.construct)
         {
@@ -59,6 +60,11 @@ class ControllerFactory
         return this;
     }
 
+    middleware(callback)
+    {
+        this._middlewares.push(callback);
+    }
+
     /**
      * Apply the bindings to parameters to the request.
      * If a response is returned, the dispatcher will return it immediately.
@@ -78,6 +84,27 @@ class ControllerFactory
                 request.params[param] = newValue;
             }
         }
+    }
+
+    applyMiddleware(request,response)
+    {
+        if (! this._middlewares.length) {
+            return;
+        }
+        var getNext = function(index)
+        {
+            var i = index+1;
+            if (! this._middlewares[i]) {
+                return function () {
+                    return null;
+                };
+            }
+
+            return this._middlewares[i];
+
+        }.bind(this);
+
+        this._middlewares[0] (request,response,getNext(0));
     }
 
     /**
@@ -147,12 +174,17 @@ class ControllerFactory
                 return new Response(value,request).send(response);
             }
 
+
+
             // Do the deed. If after applying the parameter bindings a response comes back,
             // Quit the execution and send the response.
             var holdupResponse = controller.applyBindings(request);
 
             if (! holdupResponse) {
-                return process( action(request,request.params,response) );
+
+                controller.applyMiddleware(request,response);
+
+                return response.headersSent ? null : process( action(request,request.params,response) );
             }
 
             return holdupResponse.send(response);

@@ -5,7 +5,9 @@ build.npmTasks.push("grunt-react");
 var files = {
     "js-lib" : [
         'jquery/dist/jquery.js',
-        'angular/angular.js'
+        'angular/angular.js',
+        'moment/moment.js',
+        'noty/js/noty/packaged/jquery.noty.packaged.js',
     ],
 
     "js-src" : [
@@ -14,8 +16,7 @@ var files = {
     ],
 
     "css-lib": [
-        '/vex/css/vex.css',
-        '/vex/css/vex-theme-plain.css'
+        'animate.css'
     ],
 
     "css" : [
@@ -36,8 +37,8 @@ build.register('default')
     .path('import', 'assets/vendor/foundation/scss')
 
     .collection('js-lib',   files['js-lib'],    {dir: "{assets}/vendor", build:"{static}/app.lib.js"})
+    .collection('css-lib',  files['css-lib'],   {dir: "{assets}/vendor", build:"{static}/app.lib.css"})
     .collection('js-src',   files['js-src'],    {dir: "{js}",            build:"{static}/app.src.js"})
-    //.collection('css-lib',  files['css-lib'],   {dir: "{js}/lib",        build:"{static}/app.lib.css"})
     .collection('css',      files['css'],       {dir: "{css}"});
 
 module.exports = build;

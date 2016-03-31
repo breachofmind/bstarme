@@ -2,3 +2,13 @@
 	margin:30px 0;
 	fieldset {padding:30px;}
 }
+
+table.redirect-list {
+	input {margin:0;}
+}
+a.link {
+	display:inline-block; padding:3px;
+	font-size:18px;
+	&.success {color:$success-color;}
+	&.alert {color:$alert-color;}
+}

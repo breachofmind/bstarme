@@ -4,15 +4,15 @@ module.exports = function()
 {
     var app = require('./app'),
         router = app.express,
-        passport = require('./auth'),
+        passport = app.auth.passport,
         dispatch = app.Controller.dispatch;
 
     // Authentication routes.
-    router.get  ('/login',  dispatch('authController', 'login'));
+    router.get  ('/',  dispatch('authController', 'login'));
     router.get  ('/logout', dispatch('authController', 'logout'));
     router.post ('/login',  passport.authenticate('local', {
-        successRedirect: "/",
-        failureRedirect: "/login"
+        successRedirect: "/app",
+        failureRedirect: "/"
     }));
 
     // RESTful api
@@ -23,5 +23,6 @@ module.exports = function()
     router.delete   ('/api/v1/:model/:id', dispatch('restController','trash'));
 
     // Application routes.
-    router.get('/',      dispatch('indexController','index'));
+    router.get('/app',        dispatch('appController','index'));
+    router.get('/:slug',      dispatch('indexController','redirect'));
 };

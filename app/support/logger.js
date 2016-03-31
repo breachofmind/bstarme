@@ -50,7 +50,7 @@ function statusColor(code)
     var c = "green";
 
     if (code >=300 && code < 400) {
-        c = "orange";
+        c = "blue";
     }
     if (code >=400 && code < 600) {
         c = "red";

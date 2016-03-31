@@ -20,7 +20,7 @@ class Paginator
         this.params  = request.params;
         this.query   = request.query;
         this.model   = request.params.model;
-        this.limit   = app.config('limit');
+        this.limit   = this.model.limited ? app.config('limit') : null;
         this.total   = 0;
 
         this.paginate = this.query.p
@@ -173,7 +173,7 @@ function parseFilter(string)
 
 function parseSort(string)
 {
-    if (! string || string == "") return {};
+    if (! string || string == "") return null;
     var sort = {};
     var parts = string.split(":");
     sort[parts[0]] = parts.length>1 ? parseInt(parts[1]) : 1;

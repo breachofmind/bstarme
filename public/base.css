@@ -71,8 +71,6 @@ html, body {
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -1654,7 +1652,8 @@ select {
   margin-bottom: 1.25rem;
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
   position: relative;
-  transition: opacity 300ms ease-out;
+  -webkit-transition: opacity 300ms ease-out;
+          transition: opacity 300ms ease-out;
   background-color: #008CBA;
   border-color: #0078a0;
   color: #FFFFFF;
@@ -2349,7 +2348,8 @@ button, .button {
   background-color: #008CBA;
   border-color: #007095;
   color: #FFFFFF;
-  transition: background-color 300ms ease-out;
+  -webkit-transition: background-color 300ms ease-out;
+          transition: background-color 300ms ease-out;
 }
 /* line 163, ../assets/vendor/foundation/scss/foundation/components/_buttons.scss */
 button:hover, button:focus, .button:hover, .button:focus {
@@ -3293,9 +3293,6 @@ button::-moz-focus-inner {
   left: 50%;
   top: 50%;
   -webkit-transform: translateY(-50%) translateX(-50%);
-  -moz-transform: translateY(-50%) translateX(-50%);
-  -ms-transform: translateY(-50%) translateX(-50%);
-  -o-transform: translateY(-50%) translateX(-50%);
   transform: translateY(-50%) translateX(-50%);
   max-height: 100%;
   max-width: 100%;
@@ -4047,13 +4044,8 @@ input:not([type]), input[type="text"], input[type="password"], input[type="date"
   margin: 0 0 1rem 0;
   padding: 0.5rem;
   width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-transition: border-color 0.15s linear, background 0.15s linear;
-  -moz-transition: border-color 0.15s linear, background 0.15s linear;
-  -ms-transition: border-color 0.15s linear, background 0.15s linear;
-  -o-transition: border-color 0.15s linear, background 0.15s linear;
   transition: border-color 0.15s linear, background 0.15s linear;
 }
 /* line 137, ../assets/vendor/foundation/scss/foundation/components/_forms.scss */
@@ -4470,7 +4462,8 @@ ul.pagination li {
 /* line 111, ../assets/vendor/foundation/scss/foundation/components/_pagination.scss */
 ul.pagination li a, ul.pagination li button {
   border-radius: 3px;
-  transition: background-color 300ms ease-out;
+  -webkit-transition: background-color 300ms ease-out;
+          transition: background-color 300ms ease-out;
   background: none;
   color: #999999;
   display: block;
@@ -4969,7 +4962,8 @@ ul.pagination li {
   text-indent: 100%;
   width: 4rem;
   height: 2rem;
-  transition: left 0.15s ease-out;
+  -webkit-transition: left 0.15s ease-out;
+          transition: left 0.15s ease-out;
 }
 /* line 74, ../assets/vendor/foundation/scss/foundation/components/_switches.scss */
 .switch input {
@@ -4995,13 +4989,8 @@ ul.pagination li {
   top: .25rem;
   width: 1.5rem;
   -webkit-transition: left 0.15s ease-out;
-  -moz-transition: left 0.15s ease-out;
-  -o-transition: translate3d(0, 0, 0);
   transition: left 0.15s ease-out;
   -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 /* line 110, ../assets/vendor/foundation/scss/foundation/components/_switches.scss */
@@ -5303,7 +5292,8 @@ table tr td {
   display: inline-block;
   line-height: 0;
   max-width: 100%;
-  transition: all 200ms ease-out;
+  -webkit-transition: all 200ms ease-out;
+          transition: all 200ms ease-out;
 }
 /* line 48, ../assets/vendor/foundation/scss/foundation/components/_thumbs.scss */
 .th:hover, .th:focus {

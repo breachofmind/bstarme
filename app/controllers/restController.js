@@ -20,8 +20,11 @@ app.Controller.create('restController', {
         {
             var object = Model.get(value.toLowerCase());
 
-            if (! object ||  object.expose === false) {
+            if (! object) {
                 return new Response({error:`Model "${value}" does not exist.`},request).status(404,'Not Found').json();
+            }
+            if (object.expose === false && !request.user) {
+                return new Response({error:`You must be logged in to view this object.`},request).status(401,'Unauthorized').json();
             }
 
             request.params.Model = object.model;
@@ -98,6 +101,8 @@ app.Controller.create('restController', {
 
             return new Response(null, request).status(401,'Unauthorized').json();
         }
+
+        request.body.modified_at = Date.now();
 
         return params.Model
             .findByIdAndUpdate(params.id, request.body, {new:true})

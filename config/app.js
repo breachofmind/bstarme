@@ -44,10 +44,12 @@ module.exports = {
      */
     defaultTemplate: function(template)
     {
+        template.style('css', '/app.lib.css');
         template.style('base', '/base.css');
         template.style('app', '/app.css');
         template.script('lib', '/app.lib.js');
         template.script('src', '/app.src.js');
+
     },
 
     /**
@@ -57,7 +59,8 @@ module.exports = {
     controllers: [
         'indexController',
         'restController',
-        'authController'
+        'authController',
+        'appController',
     ],
 
     /**
@@ -66,7 +69,8 @@ module.exports = {
      */
     models: [
         'user',
-        'media'
+        'redirect',
+        'visitor'
     ],
 
     /**

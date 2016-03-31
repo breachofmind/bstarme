@@ -1,16 +1,17 @@
 var express     = require('express'),
     chalk       = require('chalk'),
-    mongoose    = require('mongoose'),
+    db          = require('./db'),
     bodyParser  = require('body-parser'),
     config      = require('../config/app'),
     csrf        = require('csurf'),
     crypto      = require('crypto'),
     session     = require('express-session'),
     Routes      = require('./routes'),
-    passport    = require('./auth'),
+    Auth        = require('./auth'),
     helpers     = require('./support/helpers'),
     Logger      = require('./support/logger'),
     MongoStore  = require('connect-mongo')(session);
+
 
 /**
  * The core application.
@@ -18,14 +19,13 @@ var express     = require('express'),
  */
 function Application ()
 {
-    var app     = this;
+    var app = this;
     var _config = config;
 
     this.util = helpers;
 
     // Setup MongoDB connection.
-    this.db = mongoose;
-    this.db.connect(config.db);
+    this.db = db.connection;
     this.logger = new Logger(this.db);
 
     // Setup express.js webserver.
@@ -41,6 +41,7 @@ function Application ()
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({extended:true}));
     this.express.use(express.static('public'));
+    this.express.use('/template',express.static('assets/views/ng'));
 
     // Session.
     this.express.use(session({
@@ -65,10 +66,8 @@ function Application ()
             .send(response);
     });
 
-    // User authentication layer.
-    this.express.use(passport.initialize());
-    this.express.use(passport.session());
-
+    // User authentication.
+    this.auth = new Auth(app);
 
     /**
      * Return a config variable.
@@ -170,9 +169,12 @@ function Application ()
         this.Controller = require('./controller');
         this.Response   = require('./response');
 
+
         this.loadModels()
             .loadControllers()
             .loadRoutes();
+
+
 
         return this;
     };

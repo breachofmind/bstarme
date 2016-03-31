@@ -1,9 +1,9 @@
 "use strict";
 
-const app = require('./app');
-const db = app.db;
+const db = require('./db').connection;
 
 var _models = {};
+
 
 /**
  * Model Factory class.
@@ -18,6 +18,9 @@ class ModelFactory
 
         // Expose to API?
         this.expose = true;
+
+        // Should result set be limited? (paginated)
+        this.limited = true;
 
         this.range('_id',1);
         this.population = [];

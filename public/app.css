@@ -6,3 +6,23 @@
 #LoginForm fieldset {
   padding: 30px;
 }
+
+/* line 7, ../assets/scss/site/_layout.scss */
+table.redirect-list input {
+  margin: 0;
+}
+
+/* line 9, ../assets/scss/site/_layout.scss */
+a.link {
+  display: inline-block;
+  padding: 3px;
+  font-size: 18px;
+}
+/* line 12, ../assets/scss/site/_layout.scss */
+a.link.success {
+  color: #43AC6A;
+}
+/* line 13, ../assets/scss/site/_layout.scss */
+a.link.alert {
+  color: #f04124;
+}

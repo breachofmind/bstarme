@@ -1,44 +1,71 @@
 "use strict";
 
-var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
-    app,User;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const Model = require('./model');
 
-
-var strategy = function(username, password, done)
+class Auth
 {
-    app = require('./app');
-    User = app.Model.User;
+    /**
+     * Build the auth object.
+     * @constructor
+     */
+    constructor(app)
+    {
+        this.passport = passport;
 
-    User.findOne({ email: username }, function (err, user) {
+        app.express.use(passport.initialize());
+        app.express.use(passport.session());
 
-        if (err) {
-            return done(err);
-        }
-        if (! user) {
-            return done(null, false, { message: 'User does not exist.' });
-        }
-        if (! user.isValid(password)) {
-            return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-    });
-};
+        passport.use(new LocalStrategy(this.strategy));
+        passport.serializeUser(this.serialize);
+        passport.deserializeUser(this.deserialize);
+    }
 
-passport.use(new LocalStrategy(strategy));
+    /**
+     * Serialize a user.
+     * @param user
+     * @param done
+     */
+    serialize(user,done)
+    {
+        done(null, user._id);
+    }
 
+    /**
+     * Deserialize a user.
+     * @param id
+     * @param done
+     */
+    deserialize(id,done)
+    {
+        Model.User.findById(id, function(err, user) {
+            done(err, user);
+        });
+    }
 
-passport.serializeUser(function(user, done)
-{
-    done(null, user._id);
-});
+    /**
+     * The local strat.
+     * @param username
+     * @param password
+     * @param done
+     */
+    strategy(username,password,done)
+    {
+        Model.User.findOne({ email: username }, function (err, user) {
 
+            if (err) {
+                return done(err);
+            }
+            if (! user) {
+                return done(null, false, { message: 'User does not exist.' });
+            }
+            if (! user.isValid(password)) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        });
+    }
+}
 
-passport.deserializeUser(function(id, done)
-{
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
-
-module.exports = passport;
+module.exports = Auth;

@@ -10,7 +10,7 @@ var actions = {
     mongo: function()
     {
         console.log('Starting MongoDB server...');
-        var process = cp.spawn("mongod",['--dbpath','./db/srv']);
+        var process = cp.spawn("mongod",['--config','./config/mongod.conf']);
         process.stdout.on('data',(data)=>{
             console.log(data.toString());
         });
