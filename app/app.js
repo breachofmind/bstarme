@@ -1,3 +1,5 @@
+"use strict";
+
 var express     = require('express'),
     chalk       = require('chalk'),
     db          = require('./db'),
