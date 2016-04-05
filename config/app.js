@@ -4,7 +4,7 @@ module.exports = {
 
     appKey: "ef270e97019e98f4005089238fee850",
 
-    db: "mongodb://localhost/App",
+    db: "mongodb://localhost/bstarme",
 
     /**
      * The environment.
