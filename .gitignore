@@ -4,3 +4,4 @@ db/srv
 .idea
 *.DS_Store
 mean.iml
+config/env.js

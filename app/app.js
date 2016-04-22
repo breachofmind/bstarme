@@ -107,7 +107,7 @@ function Application ()
         if (['local','development','production'].indexOf(env) > -1) {
             return this.config('env',env);
         }
-        return this.config('env','development');
+        return this.config('env');
     };
 
 
