@@ -245,3 +245,23 @@
 2016-03-25T15:34:15.940-0500 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
 2016-03-25T15:34:16.108-0500 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
 2016-03-25T15:34:16.109-0500 I CONTROL  [signalProcessingThread] dbexit:  rc: 0
+2016-04-22T13:31:02.815-0500 I CONTROL  [main] ***** SERVER RESTARTED *****
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] MongoDB starting : pid=10633 port=27017 dbpath=/data/db 64-bit host=l022fj7.brightstarcorp.com
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] db version v3.2.3
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] git version: b326ba837cf6f49d65c2f85e1b70f6f31ece7937
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] allocator: system
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] modules: none
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] build environment:
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten]     distarch: x86_64
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-04-22T13:31:02.841-0500 I CONTROL  [initandlisten] options: { config: "./config/mongod.conf", net: { bindIp: "127.0.0.1", port: 27017 }, setParameter: { enableLocalhostAuthBypass: "false" }, systemLog: { destination: "file", logAppend: true, path: "db/mongodb.log" } }
+2016-04-22T13:31:02.842-0500 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-04-22T13:31:02.842-0500 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=9G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-04-22T13:31:03.513-0500 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-04-22T13:31:03.513-0500 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+2016-04-22T13:31:03.514-0500 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-04-22T13:31:08.424-0500 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:62743 #1 (1 connection now open)
+2016-04-22T13:31:08.516-0500 I INDEX    [conn1] build index on: bstar.sessions properties: { v: 1, key: { expires: 1 }, name: "expires_1", ns: "bstar.sessions", expireAfterSeconds: 0 }
+2016-04-22T13:31:08.516-0500 I INDEX    [conn1] 	 building index using bulk method
+2016-04-22T13:31:08.527-0500 I INDEX    [conn1] build index done.  scanned 0 total records. 0 secs
+2016-04-22T13:32:13.234-0500 I NETWORK  [conn1] end connection 127.0.0.1:62743 (0 connections now open)
