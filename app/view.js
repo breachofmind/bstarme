@@ -15,6 +15,7 @@ class View
         this.template = Template.create();
 
         var applyDefault = app.config('defaultTemplate');
+
         applyDefault(this.template);
     }
 
