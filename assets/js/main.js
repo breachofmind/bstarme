@@ -6,6 +6,10 @@
 
     var core = angular.module('core', []);
 
+    core.run(function($http) {
+        $http.defaults.headers.common['CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+    });
+
     core.directive('redirectList', ['$http', function($http)
     {
 

@@ -5,3 +5,4 @@ db/srv
 *.DS_Store
 mean.iml
 config/env.js
+db/mongodb.log
