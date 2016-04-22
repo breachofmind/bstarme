@@ -1,22 +1,23 @@
 var path = require('path');
+var env = require('./env');
 
 module.exports = {
 
     appKey: "ef270e97019e98f4005089238fee850",
 
-    db: "mongodb://localhost/bstarme",
+    db: env.db,
 
     /**
      * The environment.
      * @var string local|development|production
      */
-    env: "development",
+    env: env.name,
 
     /**
      * The webserver port.
      * @var int
      */
-    port: 8081,
+    port: env.port || 8081,
 
     /**
      * The root or base path.
