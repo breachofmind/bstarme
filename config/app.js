@@ -16,7 +16,7 @@ module.exports = {
      * The webserver port.
      * @var int
      */
-    port: 8081,
+    port: 8080,
 
     /**
      * The root or base path.
