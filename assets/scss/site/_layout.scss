@@ -12,3 +12,17 @@ a.link {
 	&.success {color:$success-color;}
 	&.alert {color:$alert-color;}
 }
+
+#NewItemForm {
+	padding:15px; background:#efefef;
+	button {margin:0;}
+}
+
+.td-active {width:30px; text-align:center;}
+tr.inactive {
+	td {background:#efefef;}
+}
+
+td.actions {
+	text-align:right;
+}

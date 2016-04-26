@@ -7,7 +7,6 @@ html
     head
         title=template.title
 
-        meta(name="csrf-token", content=token)
         != template.head()
 
         script !{"const USER = "+JSON.stringify(template.user ? template.user.toJSON() : null)+";"}

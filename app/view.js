@@ -54,9 +54,10 @@ class View
      */
     render(request,response)
     {
+        this.template.setRequest(request);
         this.template.setUser(request.user);
         this.data.template = this.template;
-        this.data.token = request.csrfToken();
+
         return response.render(this.file, this.data);
     }
 

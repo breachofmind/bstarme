@@ -1,6 +1,7 @@
 var Model = require('../model');
 
 var Redirect = Model.create('Redirect', {
+    active:           { type: Boolean, default:true },
     slug:             { type: String, required:true },
     destination:      { type: String, required:true },
     author:           { type: Model.type('ObjectId'), ref:"User" },

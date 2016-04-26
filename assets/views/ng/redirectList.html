@@ -1,6 +1,6 @@
 <div class="row">
-	<div class="col sm6">
-	<form name="newItemForm">
+	<div class="col sm12 md6">
+	<form name="newItemForm" id="NewItemForm">
 		<div class="row">
 			<div class="col sm3">
 				<label for="Slug">Slug</label>
@@ -25,9 +25,11 @@
 </div>
 
 <div class="row">
+	<div class="col sm12">
 	<table class="redirect-list" width="100%">
 		<thead>
 		<tr>
+			<th class="td-active">Active</th>
 			<th>Slug</th>
 			<th>Destination</th>
 			<th>Author</th>
@@ -42,14 +44,13 @@
 
 
 
-		<tr class="redirect-item" ng-repeat="(i,item) in list.items" id="{{item._id}}">
-
-			<td><input type="text" value="{{item.slug}}" ng-model="item.slug"/></td>
-			<td><input type="text" value="{{item.destination}}" ng-model="item.destination"/></td>
+		<tr class="redirect-item" ng-class="{inactive:! item.active}" ng-repeat="(i,item) in list.items" id="{{item._id}}">
+			<td class="td-active"><input type="checkbox" ng-model="item.active" ng-checked="item.active" ng-change="list.update(item)"></td>
+			<td><input type="text" value="{{item.slug}}" ng-model="item.slug" ng-blur="list.update(item,'slug')" ng-focus="list.editing(item,'slug')"/></td>
+			<td><input type="text" value="{{item.destination}}" ng-model="item.destination" ng-blur="list.update(item,'destination')" ng-focus="list.editing(item,'destination')"/></td>
 			<td><a href="mailto:{{item.author.email}}">{{item.author.first_name}} {{item.author.last_name}}</a></td>
 
 			<td class="actions">
-				<a class="link" ng-click="list.update(item)"><i class="lnr-floppy-disk"></i></a>
 				<a class="link alert" ng-click="list.delete(item,i)"><i class="lnr-trash3"></i></a>
 			</td>
 		</tr>
@@ -57,5 +58,6 @@
 
 		</tbody>
 	</table>
+	</div>
 </div>
 

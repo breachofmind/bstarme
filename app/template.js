@@ -18,6 +18,7 @@ class Template
 
         this.title          = title;
         this.user           = null;
+        this.request        = null;
         this.description    = "";
         this.bodyClass      = [];
         this.scripts        = [];
@@ -39,6 +40,15 @@ class Template
             this.meta('user', user._id);
         }
 
+        return this;
+    }
+
+    setRequest(request)
+    {
+        if (request) {
+            this.request = request;
+            this.meta('csrf-token', request.csrfToken());
+        }
         return this;
     }
 

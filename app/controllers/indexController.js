@@ -28,7 +28,7 @@ app.Controller.create('indexController', {
         return params.object.then(function(data)
         {
             // Slug doesn't exist in the database.
-            if (! data) {
+            if (! data || data.active === false) {
                 return false;
             }
 

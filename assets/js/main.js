@@ -4,6 +4,8 @@
         return '/api/v1/'+path;
     };
 
+    $.noty.defaults.timeout = 3000;
+
     var core = angular.module('core', []);
 
     core.run(function($http) {
@@ -20,11 +22,21 @@
             controller:function($scope)
             {
                 var ctrl = this;
+
+                // Models for the creation form.
                 $scope.formSlug = null;
                 $scope.formDestination = null;
 
+                /**
+                 * Array of items in the list table.
+                 * @type {Array}
+                 */
                 this.items = [];
 
+                /**
+                 * Gets the data from the Creation form.
+                 * @returns {{slug: null, destination: null, author: *}}
+                 */
                 this.getFormData = function()
                 {
                     return {
@@ -35,7 +47,10 @@
                 };
 
 
-
+                /**
+                 * Creates a new redirect object.
+                 * @returns {boolean}
+                 */
                 this.create = function()
                 {
                     if ($scope.newItemForm.$valid) {
@@ -49,13 +64,30 @@
                     noty({text:"Form is not valid, please check.", type:"alert"});
                 };
 
-                this.update = function(item)
+                /**
+                 * Updates an existing redirect object.
+                 * @param item obj
+                 * @param field string, optional
+                 * @returns void
+                 */
+                this.update = function(item,field)
                 {
+                    // Checks the original field. If the same, don't need to update.
+                    if (field && item._o === item[field]) {
+                        item._o = null;
+                        return;
+                    }
                     $http.put(api('redirect/'+item._id), item).success(function(data) {
                         noty({text:"Updated.", type:"success"});
                     });
                 };
 
+                /**
+                 * Deletes the redirect object from the database.
+                 * @param item obj
+                 * @param i int
+                 * @returns void
+                 */
                 this.delete = function(item,i)
                 {
                     $http.delete(api('redirect/'+item._id)).success(function(data) {
@@ -64,6 +96,10 @@
                     });
                 };
 
+                /**
+                 * Gets the latest items from the db.
+                 * @returns void
+                 */
                 this.refresh = function()
                 {
                     $http.get(api('redirect')).success(function(json) {
@@ -71,8 +107,18 @@
                     });
                 };
 
+                /**
+                 * Begin editing a field.
+                 * @param item obj
+                 * @param field string
+                 */
+                this.editing = function(item,field)
+                {
+                    item._o = item[field];
+                };
 
 
+                // Get things started.
                 this.refresh();
             }
         }

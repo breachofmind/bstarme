@@ -26,3 +26,29 @@ a.link.success {
 a.link.alert {
   color: #f04124;
 }
+
+/* line 16, ../assets/scss/site/_layout.scss */
+#NewItemForm {
+  padding: 15px;
+  background: #efefef;
+}
+/* line 18, ../assets/scss/site/_layout.scss */
+#NewItemForm button {
+  margin: 0;
+}
+
+/* line 21, ../assets/scss/site/_layout.scss */
+.td-active {
+  width: 30px;
+  text-align: center;
+}
+
+/* line 23, ../assets/scss/site/_layout.scss */
+tr.inactive td {
+  background: #efefef;
+}
+
+/* line 26, ../assets/scss/site/_layout.scss */
+td.actions {
+  text-align: right;
+}
