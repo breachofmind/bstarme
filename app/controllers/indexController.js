@@ -12,7 +12,7 @@ app.Controller.create('indexController', {
         {
             var RedirectModel = Model.get('redirect').model;
 
-            request.params.object = RedirectModel.findOne({slug: value}).exec();
+            request.params.object = RedirectModel.findOne({slug: value.toLowerCase()}).exec();
         });
     },
 
